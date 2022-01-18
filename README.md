@@ -3,6 +3,13 @@ A repo to scrape and compile the lottery results for various lotteries.
 The lottery site only stores results for a certain amount of time (currently 90 days).
 
 This repo should help complie existing results and record new results in a easily parsable JSON format to gather some interesting data on pervious results.
+# Getting Started
+1. Clone repo 
+2. Run npm install from directory to install dependacies
+3. Run node withPuppeteer.js to gather the data for the urls in that file
+4. Results files for each URL are stored in a created Results/ folder
+5. Finally all those results files are merged into a single result file 
+6. Manually upload file to S3
 
 # Gathering old results
 I used an internet archive called The Wayback Machine (https://archive.org/web/) to view past versions of the lottery results page. 
