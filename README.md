@@ -3,6 +3,10 @@ A repo to scrape and compile the lottery results for various lotteries.
 The lottery site only stores results for a certain amount of time (currently 90 days).
 
 This repo should help complie existing results and record new results in a easily parsable JSON format to gather some interesting data on pervious results.
+
+Results to date are available here https://lottery-files.s3.eu-west-1.amazonaws.com/all-results.json
+
+
 # Getting Started
 1. Clone repo 
 2. Run npm install from directory to install dependacies
