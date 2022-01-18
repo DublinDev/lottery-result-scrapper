@@ -14,6 +14,8 @@ This repo should help complie existing results and record new results in a easil
 # Gathering old results
 I used an internet archive called The Wayback Machine (https://archive.org/web/) to view past versions of the lottery results page. 
 These pages were opened using puppeteer and the relevent information extracted out and merged into one long results file.
+![image](https://user-images.githubusercontent.com/16609581/150023115-1a95aec5-188c-4228-af80-7151ca5d8f82.png)
+
 
 # Future plans
 * Modularise existing functions into a class. This will allow for different files to be created to process different lottery results such as the 
