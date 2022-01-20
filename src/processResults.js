@@ -7,7 +7,7 @@ const puppeteer = require("puppeteer");
 
 // files
 const helper = require("./helpers");
-const { urls } = require("../data/urls");
+const { irishLotteryUrl, irishLotteryUrls_legacy } = require("../data/urls");
 const { addToTable } = require("./dynamoTest");
 
 const IrishLotteryPage = require("./pageObjects/page.irishLotteryResults");
@@ -18,11 +18,10 @@ const resultsPath = path.join(__dirname, "../results");
 // if results directory doesn't exist create it
 fs.existsSync(resultsPath) || fs.mkdirSync(resultsPath);
 
-console.log(resultsPath);
 (async () => {
-  for (let j = 0; j < urls.length; j++) {
+  for (let j = 0; j < irishLotteryUrl.length; j++) {
     console.log("Processing file" + (j + 1));
-    const url = urls[j];
+    const url = irishLotteryUrl[j];
     let allLotteries = [];
 
     const browser = await puppeteer.launch();
@@ -44,20 +43,22 @@ console.log(resultsPath);
 
     for (let i = 0; i < allLotteries.length; i++) {
       const result = allLotteries[i];
-
       uploadQueue.push(addToTable(result));
     }
-    await fs.writeFileSync(
-      resultsPath + `/lotteryResults-${j + 1}.json`,
-      JSON.stringify(allLotteries, null, 2)
-    );
+
+    // write to file
+    // await fs.writeFileSync(
+    //   resultsPath + `/lotteryResults-${j + 1}.json`,
+    //   JSON.stringify(allLotteries, null, 2)
+    // );
 
     await Promise.all(uploadQueue);
     await browser.close();
   }
 
-  helper.combineFiles();
-  helper.findDatesMissingFromDataset(
-    require(resultsPath + "/all-results.json")
-  );
+  // Merge files
+  // helper.combineFiles();
+  // helper.findDatesMissingFromDataset(
+  //   require(resultsPath + "/all-results.json")
+  // );
 })();

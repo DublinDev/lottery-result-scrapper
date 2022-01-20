@@ -8,7 +8,7 @@ AWS.config.update({
 });
 
 // Create the DynamoDB service object
-var docClient = new AWS.DynamoDB.DocumentClient(); //({apiVersion: '2012-08-10'});
+var docClient = new AWS.DynamoDB.DocumentClient();
 
 const addToTable = (entry, tableName = "lottery_results") => {
   const resultPrimaryKey =
@@ -28,8 +28,8 @@ const addToTable = (entry, tableName = "lottery_results") => {
         console.log("Error", err);
         rej();
       } else {
-        console.log("Success", data);
-        res();
+        console.log(`Successfully uploaded ${resultPrimaryKey} to DB`, data);
+        res(data);
       }
     });
   });
