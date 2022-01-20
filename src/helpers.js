@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 
 function countDaysInYear(yearToDate, day) {
   let d = new Date(`1-1-${yearToDate}`),
@@ -67,12 +68,13 @@ function convertDateFormat(date) {
 }
 
 function combineFiles() {
-  const allFiles = fs.readdirSync("./results");
+  console.log(path.join(__dirname, "../results"));
+  const allFiles = fs.readdirSync(path.join(__dirname, "../results"));
   let allEntries = [];
 
   for (let i = 0; i < allFiles.length; i++) {
     const fileName = allFiles[i];
-    const data = require(`./results/${fileName}`);
+    const data = require(`../results/${fileName}`);
     // console.log(fileName + " - " + data.length + " results");
 
     for (let j = 0; j < data.length; j++) {
@@ -94,7 +96,7 @@ function combineFiles() {
   }
 
   fs.writeFileSync(
-    "./results/all-results.json",
+    path.join(__dirname, "../results/all-results.json"),
     JSON.stringify(allEntries, null, 2)
   );
 }
