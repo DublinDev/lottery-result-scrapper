@@ -4,12 +4,14 @@
   "description": "",
   "main": "nodejs.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/processResults.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "aws-sdk": "^2.1060.0",
     "puppeteer": "^13.0.1"
   }
 }

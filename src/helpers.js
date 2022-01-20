@@ -1,4 +1,7 @@
-const fs = require('fs');
+const fs = require("fs");
+const path = require("path");
+
+const resultsPath = path.join(__dirname, "../results");
 
 function countDaysInYear(yearToDate, day) {
   let d = new Date(`1-1-${yearToDate}`),
@@ -47,7 +50,7 @@ function findDatesMissingFromDataset(allLotteryResultObjs) {
 
   console.log(
     "# of dates checked" +
-    datesOfAllDraws.length +
+      datesOfAllDraws.length +
       "->" +
       missingDates.length +
       "(missing days of results missing for last 2 years of results)"
@@ -67,12 +70,13 @@ function convertDateFormat(date) {
 }
 
 function combineFiles() {
-  const allFiles = fs.readdirSync("./results");
+  console.log(resultsPath);
+  const allFiles = fs.readdirSync(resultsPath);
   let allEntries = [];
 
   for (let i = 0; i < allFiles.length; i++) {
     const fileName = allFiles[i];
-    const data = require(`./results/${fileName}`);
+    const data = require(`${resultsPath}/${fileName}`);
     // console.log(fileName + " - " + data.length + " results");
 
     for (let j = 0; j < data.length; j++) {
@@ -94,7 +98,7 @@ function combineFiles() {
   }
 
   fs.writeFileSync(
-    "./results/all-results.json",
+    resultsPath + "/all-results.json",
     JSON.stringify(allEntries, null, 2)
   );
 }
@@ -104,5 +108,5 @@ module.exports = {
   getDatesForAllWednesdaysAndFridaysInYears,
   findDatesMissingFromDataset,
   convertDateFormat,
-  combineFiles
+  combineFiles,
 };
