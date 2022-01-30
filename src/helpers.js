@@ -43,7 +43,7 @@ function findDatesMissingFromDataset(allLotteryResultObjs) {
   const missingDates = datesOfAllDraws.filter((date) => {
     //if date is not found leave it in
     return !allLotteryResultObjs.find((result) => {
-      const d = result.date[0] === "0" ? result.date.substring(1) : result.date;
+      const d = result.drawDate[0] === "0" ? result.drawDate.substring(1) : result.drawDate;
       return d === date;
     });
   });
@@ -84,8 +84,8 @@ function combineFiles() {
       const isFound = () => {
         return allEntries.find((storedResult) => {
           return (
-            storedResult.type === result.type &&
-            storedResult.date === result.date
+            storedResult.lotteryType === result.lotteryType &&
+            storedResult.drawDate === result.drawDate
           );
         });
       };

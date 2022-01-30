@@ -10,17 +10,11 @@ AWS.config.update({
 // Create the DynamoDB service object
 var docClient = new AWS.DynamoDB.DocumentClient(); //({apiVersion: '2012-08-10'});
 
-const addToTable = (entry, tableName = "lottery_results") => {
-  const resultPrimaryKey =
-    entry.type.toLowerCase().replace(" ", "_") + "_" + entry.date;
-
+const addToTable = (entry, tableName = "lotteryResults") => {
   var params = {
     TableName: tableName,
     Item: entry,
   };
-
-  //add primary key
-  params.Item.lottery_type_and_date = resultPrimaryKey;
 
   return new Promise((res, rej) => {
     docClient.put(params, function (err, data) {

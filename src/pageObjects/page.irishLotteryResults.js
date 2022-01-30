@@ -78,23 +78,23 @@ module.exports = class IrishLotteryPage {
 
     let lotteryResults = [
       {
-        type: "Irish Lottery",
-        date: drawDate,
+        lotteryType: "IrishLottery",
+        drawDate: drawDate,
         details: await this.processLotteryResult(allDrawResults[0]),
       },
       {
-        type: "Plus 1",
-        date: drawDate,
+        lotteryType: "LottoPlus1",
+        drawDate: drawDate,
         details: await this.processLotteryResult(allDrawResults[1]),
       },
       {
-        type: "plus 2",
-        date: drawDate,
+        lotteryType: "LottoPlus2",
+        drawDate: drawDate,
         details: await this.processLotteryResult(allDrawResults[2]),
       },
       {
-        type: "raffle",
-        date: drawDate,
+        lotteryType: "LottoRaffle",
+        drawDate: drawDate,
         details: await this.processRaffleNumber(raffleResults),
       },
     ];
