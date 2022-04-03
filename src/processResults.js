@@ -9,6 +9,7 @@ const puppeteer = require("puppeteer");
 const helper = require("./helpers");
 const { irishLotteryUrl, irishLotteryUrls_legacy } = require("../data/urls");
 const { addToTable } = require("./dynamoTest");
+const { addResult } = require("./apiIntegration");
 
 const IrishLotteryPage = require("./pageObjects/page.irishLotteryResults");
 
@@ -24,7 +25,7 @@ fs.existsSync(resultsPath) || fs.mkdirSync(resultsPath);
     const url = irishLotteryUrl[j];
     let allLotteries = [];
 
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({ args: ["--no-sandbox"] });
     const page = await browser.newPage();
     page.setDefaultNavigationTimeout(120 * 1000);
     await page.goto(url);
@@ -43,7 +44,8 @@ fs.existsSync(resultsPath) || fs.mkdirSync(resultsPath);
 
     for (let i = 0; i < allLotteries.length; i++) {
       const result = allLotteries[i];
-      uploadQueue.push(addToTable(result));
+      // uploadQueue.push(addToTable(result));
+      uploadQueue.push(addResult(result));
     }
 
     // write to file

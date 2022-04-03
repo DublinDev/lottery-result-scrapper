@@ -12,6 +12,8 @@
   "license": "ISC",
   "dependencies": {
     "aws-sdk": "^2.1060.0",
-    "puppeteer": "^13.0.1"
+    "axios": "^0.25.0",
+    "puppeteer": "^13.0.1",
+    "request": "^2.88.2"
   }
 }
