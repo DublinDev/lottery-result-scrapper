@@ -70,7 +70,6 @@ function convertDateFormat(date) {
 }
 
 function combineFiles() {
-  console.log(resultsPath);
   const allFiles = fs.readdirSync(resultsPath);
   let allEntries = [];
 
